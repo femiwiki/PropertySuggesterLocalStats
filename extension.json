@@ -10,13 +10,21 @@
 		"MediaWiki": ">= 1.46.0"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\PropertySuggesterLocalStats\\": "src/"
+		"MediaWiki\\Extension\\PropertySuggesterLocalStats\\": "src/",
+		"MediaWiki\\Extension\\PropertySuggesterLocalStats\\Maintenance\\": "maintenance/"
 	},
 	"TestAutoloadNamespaces": {
 		"MediaWiki\\Extension\\PropertySuggesterLocalStats\\Tests\\": "tests/phpunit/"
 	},
 	"MessagesDirs": {
 		"PropertySuggesterLocalStats": ["i18n"]
+	},
+	"ServiceWiringFiles": ["src/ServiceWiring.php"],
+	"config": {
+		"PropertySuggesterLocalStatsMinProbability": {
+			"value": 0.01,
+			"description": "Pairs at or below this probability are not written, as property-suggester-scripts does"
+		}
 	},
 	"manifest_version": 2
 }
