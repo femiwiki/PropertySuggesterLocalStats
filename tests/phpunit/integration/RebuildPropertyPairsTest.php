@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\PropertySuggesterLocalStats\Tests;
 
 use MediaWiki\Extension\PropertySuggesterLocalStats\Maintenance\RebuildPropertyPairs;
+use MediaWiki\Extension\PropertySuggesterLocalStats\RebuildJob;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 
 /**
@@ -19,6 +20,14 @@ class RebuildPropertyPairsTest extends MaintenanceBaseTestCase {
 	public function testExecute() {
 		$this->maintenance->execute();
 		$this->expectOutputString( "Wrote 0 rows.\n" );
+	}
+
+	public function testQueue() {
+		$this->maintenance->loadWithArgv( [ '--queue' ] );
+		$this->maintenance->execute();
+		$this->expectOutputString( "Queued a rebuild.\n" );
+		$this->assertSame( 1, $this->getServiceContainer()->getJobQueueGroup()
+			->get( RebuildJob::TYPE )->getSize() );
 	}
 
 }
