@@ -12,6 +12,17 @@ makes from a Wikidata JSON dump with Python. This extension counts the same
 pairs in PHP straight from the wiki's items, so a Wikibase other than Wikidata
 needs neither the dump nor Python.
 
+## What it counts
+
+The counts follow property-suggester-scripts:
+
+- `item`: for each property on an item, how often each other property is on
+  the same item. A property listed in `$wgPropertySuggesterClassifyingPropertyIds`
+  (such as "instance of") is counted for each of its item values instead.
+- `qualifier`: for each statement property, how often each qualifier property
+  appears, among the statements that have qualifiers.
+- `reference`: the same as `qualifier`, for reference properties.
+
 ## License
 
 GPL-2.0-or-later
