@@ -20,6 +20,9 @@
 		"PropertySuggesterLocalStats": ["i18n"]
 	},
 	"ServiceWiringFiles": ["src/ServiceWiring.php"],
+	"JobClasses": {
+		"propertySuggesterLocalStatsRebuild": "MediaWiki\\Extension\\PropertySuggesterLocalStats\\RebuildJob"
+	},
 	"config": {
 		"PropertySuggesterLocalStatsMinProbability": {
 			"value": 0.01,

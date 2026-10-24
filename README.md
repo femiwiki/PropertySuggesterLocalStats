@@ -49,6 +49,7 @@ php maintenance/run.php ./extensions/PropertySuggesterLocalStats/maintenance/Reb
 The script empties the table and writes it again in one transaction, so
 suggestions never come from a half-written table. Run it again from cron to
 keep up with edits; how often depends on how much the wiki's items change.
+`--queue` queues the rebuild as a job instead of running it at once.
 
 ## License
 

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\PropertySuggesterLocalStats\Maintenance;
 
+use MediaWiki\Extension\PropertySuggesterLocalStats\RebuildJob;
 use MediaWiki\Extension\PropertySuggesterLocalStats\TableBuilder;
 use MediaWiki\Maintenance\Maintenance;
 
@@ -23,11 +24,18 @@ class RebuildPropertyPairs extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Refill PropertySuggester's property pair table from this wiki's items" );
+		$this->addOption( 'queue', 'Queue a rebuild job instead of rebuilding now' );
 		$this->requireExtension( 'PropertySuggesterLocalStats' );
 	}
 
 	public function execute() {
 		$services = $this->getServiceContainer();
+		if ( $this->hasOption( 'queue' ) ) {
+			$services->getJobQueueGroup()->push( new RebuildJob() );
+			$this->output( "Queued a rebuild.\n" );
+			return;
+		}
+
 		/** @var TableBuilder $tableBuilder */
 		$tableBuilder = $services->getService( 'PropertySuggesterLocalStats.TableBuilder' );
 		$rows = $tableBuilder->rebuild();
