@@ -23,6 +23,33 @@ The counts follow property-suggester-scripts:
   appears, among the statements that have qualifiers.
 - `reference`: the same as `qualifier`, for reference properties.
 
+Pairs whose probability is at or below `$wgPropertySuggesterLocalStatsMinProbability`
+(0.01 by default) are left out.
+
+## Installation
+
+The extension needs WikibaseRepository and PropertySuggester. It does not
+declare them in `extension.json`, as Wikibase and its other extensions do not:
+WikibaseRepository registers from `extension-repo.json`, which the requirement
+check does not find.
+
+```php
+wfLoadExtension( 'PropertySuggester' );
+wfLoadExtension( 'PropertySuggesterLocalStats' );
+// Your wiki's "instance of" and "subclass of" properties, if it has them
+$wgPropertySuggesterClassifyingPropertyIds = [ 1, 36 ];
+```
+
+Run `maintenance/run.php update` for PropertySuggester's table, then fill it:
+
+```sh
+php maintenance/run.php ./extensions/PropertySuggesterLocalStats/maintenance/RebuildPropertyPairs.php
+```
+
+The script empties the table and writes it again in one transaction, so
+suggestions never come from a half-written table. Run it again from cron to
+keep up with edits; how often depends on how much the wiki's items change.
+
 ## License
 
 GPL-2.0-or-later
