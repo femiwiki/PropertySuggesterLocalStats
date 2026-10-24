@@ -1,0 +1,16 @@
+{
+	"name": "PropertySuggesterLocalStats",
+	"version": "0.1.0",
+	"author": "[https://femiwiki.com/ Femiwiki Team]",
+	"url": "https://github.com/femiwiki/PropertySuggesterLocalStats",
+	"descriptionmsg": "propertysuggesterlocalstats-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "wikibase",
+	"requires": {
+		"MediaWiki": ">= 1.46.0"
+	},
+	"MessagesDirs": {
+		"PropertySuggesterLocalStats": ["i18n"]
+	},
+	"manifest_version": 2
+}

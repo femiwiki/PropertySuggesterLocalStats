@@ -1,0 +1,6 @@
+{
+	"@metadata": {
+		"authors": ["Femiwiki Team"]
+	},
+	"propertysuggesterlocalstats-desc": "Fills PropertySuggester's statistics from the wiki's own Wikibase items"
+}

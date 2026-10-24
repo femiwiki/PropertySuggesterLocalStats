@@ -1,0 +1,27 @@
+{
+	"name": "femiwiki/property-suggester-local-stats",
+	"description": "MediaWiki extension that fills PropertySuggester's statistics from the wiki's own Wikibase items",
+	"license": "GPL-2.0-or-later",
+	"require-dev": {
+		"mediawiki/mediawiki-codesniffer": "52.0.1",
+		"mediawiki/mediawiki-phan-config": "0.20.0",
+		"mediawiki/minus-x": "2.0.1",
+		"php-parallel-lint/php-console-highlighter": "1.0.0",
+		"php-parallel-lint/php-parallel-lint": "1.4.0",
+		"phpcompatibility/php-compatibility": "9.3.5",
+		"dealerdirect/phpcodesniffer-composer-installer": "1.2.1"
+	},
+	"scripts": {
+		"fix": ["minus-x fix .", "phpcbf"],
+		"test": [
+			"parallel-lint . --exclude node_modules --exclude vendor",
+			"phpcs -p -s",
+			"minus-x check ."
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}
