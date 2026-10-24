@@ -9,6 +9,12 @@
 	"requires": {
 		"MediaWiki": ">= 1.46.0"
 	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\PropertySuggesterLocalStats\\": "src/"
+	},
+	"TestAutoloadNamespaces": {
+		"MediaWiki\\Extension\\PropertySuggesterLocalStats\\Tests\\": "tests/phpunit/"
+	},
 	"MessagesDirs": {
 		"PropertySuggesterLocalStats": ["i18n"]
 	},
